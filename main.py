@@ -14,10 +14,13 @@ while True:
 
     #Object detection
     (class_ids, scores, bboxes) = model.detect(frame)
+    for class_ids, score, bbox in zip(class_ids, scores, bboxes):
+        (x, y, w, h) =bbox
+        print(x, y, w,h)
+
     print("class_ids", class_ids)
     print("scores", scores)
     print("bboxes", bboxes)
-
 
     cv2.imshow("Frame", frame)
     cv2.waitKey(1)
