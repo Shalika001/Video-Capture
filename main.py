@@ -16,6 +16,8 @@ while True:
     (class_ids, scores, bboxes) = model.detect(frame)
     for class_ids, score, bbox in zip(class_ids, scores, bboxes):
         (x, y, w, h) =bbox
+
+        cv2.putText(frame, str(class_ids), (x, y - 5), cv2.FONT_HERSHEY_PLAIN, 1,(200, 0, 50), 2)
         cv2.rectangle(frame, (x, y), (x + w, y + h), (200, 0, 50), 3)
 
     print("class_ids", class_ids)
