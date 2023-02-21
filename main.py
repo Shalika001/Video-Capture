@@ -22,7 +22,7 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 740)
 
 #Create Window
 cv2.namedWindow("Frame")
-cv2.setMouseCallback("Frame", click_button)
+#cv2.setMouseCallback("Frame", click_button)
 
 while True:
     #Get frames
