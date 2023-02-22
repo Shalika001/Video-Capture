@@ -1,11 +1,11 @@
 import cv2
 
-#Opencv DNN
+# Opencv DNN
 net = cv2.dnn.readNet("./dnn_model/yolov4-tiny.weights", "./dnn_model/yolov4-tiny.cfg")
 model = cv2.dnn_DetectionModel(net)
-model.setInputParams(size=(416, 416), scale=1/255)
+model.setInputParams(size=(320, 320), scale=1 / 255)
 
-#Load class lists
+# Load class lists
 classes = []
 with open("dnn_model/classes.txt", "r") as file_object:
     for class_name in file_object.readlines():
@@ -15,23 +15,23 @@ with open("dnn_model/classes.txt", "r") as file_object:
 print("Object list")
 print(classes)
 
-#Initialize camara
+# Initialize camara
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1200)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 740)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1000)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 
-#Create Window
+# Create Window
 cv2.namedWindow("Frame")
-#cv2.setMouseCallback("Frame", click_button)
+# cv2.setMouseCallback("Frame", click_button)
 
 while True:
-    #Get frames
+    # Get frames
     ret, frame = cap.read()
 
-    #Object detection
+    # Object detection
     (class_ids, scores, bboxes) = model.detect(frame)
     for class_ids, score, bbox in zip(class_ids, scores, bboxes):
-        (x, y, w, h) =bbox
+        (x, y, w, h) = bbox
         class_name = classes[class_ids]
 
         cv2.putText(frame, class_name, (x, y - 10), cv2.FONT_HERSHEY_PLAIN, 2, (200, 0, 50), 2)
