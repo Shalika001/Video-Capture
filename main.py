@@ -20,10 +20,6 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1000)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 
-# Create Window
-cv2.namedWindow("Frame")
-# cv2.setMouseCallback("Frame", click_button)
-
 while True:
     # Get frames
     ret, frame = cap.read()
